@@ -1,0 +1,3 @@
+[@]tlo2
+[#]mówca 2;inny tekst
+[>]scene02b.txt

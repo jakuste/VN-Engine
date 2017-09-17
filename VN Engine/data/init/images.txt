@@ -1,0 +1,5 @@
+tlo1 tlo1.png
+postac1 postac1.png
+postac2 postac2.jpg
+tlo2 tlo2.jpg
+tlo3 tlo3.bmp

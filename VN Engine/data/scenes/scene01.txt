@@ -1,0 +1,10 @@
+[$]czas=10
+[$]czas+20
+[$]czas-15
+[$]czas/5
+[$]czas*100
+[@]tlo1
+[#]mówca1;tekst mówiony przez osobê
+[?]tekst pytania;odpowiedŸ pierwsza;odpowiedŸ druga
+[+][>]scene02a.txt
+[-][>]scene02b.txt
