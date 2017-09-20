@@ -1,0 +1,19 @@
+Widok przerobiony tak, zeby po powiekszeniu sie centrowalo.
+Nie trzeba uzywac drawImageWindow, wiec wywalone, zamiast tego drawImage dziala prawidlowo dla wartosci
+w zakresie 0.0 - 1.0
+
+Dodane rysowanie aktora, rowniez w parserze
+
+Dodane rysowanie tekstu
+
+Nie bylbym soba gdybym nie pokazal jaki ze mnie fspanialy artysta game devu, wiec popoprawialem wyglad gry
+i dowalilem jakies tekstury postaci
+
+Napisalem tez troche bardziej zlozony scenariusz i tu problem.
+Albo nie potrafie obsluzyc twojego parsera, albo jest dziurawy.
+Szczegolnie pytania ktore zmieniaja zmienna zamiast przechodzic do kolejnej sceny zdaja sie byc zryte
+
+Najlepiej zebys to puscil i zobaczysz o co chodzi
+
+
+Poza tym trzeba jeszcze dorobic efekty czasteczkowe, to moge w najblizszej przyszlosci
