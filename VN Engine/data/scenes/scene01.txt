@@ -1,10 +1,22 @@
-[$]czas=10
-[$]czas+20
-[$]czas-15
-[$]czas/5
-[$]czas*100
 [@]tlo1
-[#]mówca1;tekst mówiony przez osobê
-[?]tekst pytania;odpowiedŸ pierwsza;odpowiedŸ druga
-[+][>]scene02a.txt
-[-][>]scene02b.txt
+[^];tomadef.txt
+[$]punkty=0
+[#]Toma-chan;Hej przystojniaku
+[?] ;Gitara siema;Uszanowanko
+[+][$]punkty-5
+[-][$]punkty+5
+[#]Toma-chan;Czesto tu przychodzisz?
+[?]Czesto tu przychodzisz?;Tak;Nie
+[+][$]punkty+1
+[-][$]punkty+0
+[#]Toma-chan;Wiesz, chcialabym ci zadac teraz kilka pytan
+[?]Jaki jest twoj ulubiony kolor;Czarny;Czerwony
+[+][$]punkty+0
+[-][$]punkty+1
+[?]Wolisz warzywa czy owoce?;Warzywa;Owoce
+[+][$]punkty+1
+[-][$]punkty+0
+[?]Jakie jest twoje ulubione warzywo?;Pomidor;Ziemniak
+[+][$]punkty+2
+[-][$]punkty+0
+[!]punkty>2;scene02a.txt;scene02b.txt

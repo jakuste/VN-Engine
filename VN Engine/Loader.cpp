@@ -84,8 +84,6 @@ ILuint Engine::LoadImage(const char *filename)
 
 	ilGenImages(1, &image);    /* Generation of one image name */
 	ilBindImage(image);        /* Binding of image name */
-
-
 							   /* Loading of the image filename by DevIL */
 	if (success = ilLoadImage(filename))
 	{

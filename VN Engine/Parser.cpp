@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include <iostream>
 #include "Engine.h"
 
 /*
@@ -23,7 +24,7 @@ If/Else:
 Tekst:
 [#]kto_mówi;co_mówi
 Postaæ:
-[^]nazwa_postaci;co_zrobic
+[^]nazwa_postaci;plik z danymi postaci
 co_zrobic:
 dodaj;x_gdzie;y_gdzie;z_gdzie;skala
 usun
@@ -77,8 +78,49 @@ void Engine::ParseText(string text)
 	}
 	else if (tag.compare("[^]") == 0)
 	{
-		//TODO: Obs³uga zmian dla postaci
+		ParseActor(text);
 		ReadNextLine();
+	}
+}
+void Engine::ParseActor(string text) {
+	int pos = text.find(';');
+	// TODO: Tu winien byæ wybór aktora, ale jest tylko jeden
+	text = text.substr(pos + 1);
+	string str = "data/actor/" + text;
+	fstream file;
+	string variableName, value;
+	file.open(str, std::ios::in);
+	while (file >> variableName >> value)
+	{
+		if (variableName.compare("image") == 0) {
+			actor.image = value;
+		}
+		else if (variableName.compare("visible") == 0) {
+			if (value.compare("true") == 0) {
+				actor.visible = true;
+			}
+			else if (value.compare("true") == 0) {
+				actor.visible = false;
+			}
+		}
+		else if (variableName.compare("posx") == 0) {
+			actor.posX = stof(value, NULL);
+		}
+		else if (variableName.compare("posy") == 0) {
+			actor.posY = stod(value, NULL);
+		}
+		else if (variableName.compare("sizex") == 0) {
+			actor.sizeX = stof(value, NULL);
+		}
+		else if (variableName.compare("sizey") == 0) {
+			actor.sizeY = stof(value, NULL);
+		}
+		else if (variableName.compare("rotspeed") == 0) {
+			actor.rotSpeed = stof(value, NULL);
+		}
+		else if (variableName.compare("rotangle") == 0) {
+			actor.rotAngle = stof(value, NULL);
+		}
 	}
 }
 

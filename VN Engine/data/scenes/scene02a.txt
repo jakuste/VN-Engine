@@ -1,3 +1,4 @@
-[@]tlo2
-[#]mówca 2;inny tekst
-[>]scene02b.txt
+[#]Toma-chan;Wiesz co?
+[^];tomarum
+[#]Toma-chan;Fajny jestes. Jesli chcesz, moge byc twoja waifu
+[#];Gratulacje! Ty i Toma-chan bedziecie miec wiele malych pomidorkow!

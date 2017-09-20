@@ -1,0 +1,7 @@
+image rumieniec
+visible true
+posx 0.5
+posy 1.1
+sizex 0.3
+sizey 1.0
+rotangle 4.0

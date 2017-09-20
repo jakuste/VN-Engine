@@ -4,8 +4,8 @@
 
 void Engine::InitWindowVariables()
 {
-	width = 500;
-	height = 500;
+	width = WIDTH;
+	height = HEIGHT;
 	windowXPosition = 100;
 	windowYPosition = 100;
 	windowTitle = "Game Engine";

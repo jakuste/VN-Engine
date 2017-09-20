@@ -35,12 +35,14 @@ std::map<string, ILuint> Engine::imagesDEVil;
 std::map<string, GLuint> Engine::images;
 std::map<string, Engine::ImagesValues> Engine::visibleImages;
 string Engine::inGameBackground;
+Engine::Actor Engine::actor;
 
 string Engine::talkingPerson;
 string Engine::spokenText;
 string Engine::question;
 string Engine::answer1;
 string Engine::answer2;
+int Engine::answerHover = 0;
 string Engine::command1;
 string Engine::command2;
 
@@ -61,6 +63,7 @@ Engine::Engine(int argc, char **argv)
 	glutDisplayFunc(&DrawScene);
 	glutReshapeFunc(&Resize);
 	glutMouseFunc(&MouseControl);
+	glutPassiveMotionFunc(&MouseMotionControl);
 	glutKeyboardFunc(&KeyInput);
 	glutTimerFunc(5, &Animate, 1);
 	glutMainLoop();
