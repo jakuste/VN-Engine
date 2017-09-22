@@ -8,11 +8,15 @@ int Engine::height;
 int Engine::windowXPosition;
 int Engine::windowYPosition;
 string Engine::windowTitle;
+const int Engine::displayWidth = 800;
+const int Engine::displayHeight = 600;
 
 STATE Engine::state;
 int Engine::linePosition;
 fstream Engine::gameFile;
 string Engine::sceneFile;
+int Engine::victory;
+float Engine::creditsY;
 
 ILuint Engine::ILMenuBackgroundImage;
 GLuint Engine::GLMenuBackgroundImage;
@@ -22,18 +26,12 @@ ILuint Engine::ILLoadGameImage;
 GLuint Engine::GLLoadGameImage;
 ILuint Engine::ILQuitGameImage;
 GLuint Engine::GLQuitGameImage;
-ILuint Engine::ILAnswerButtonImage;
-GLuint Engine::GLAnswerButtonImage;
-ILuint Engine::ILTextArea;
-GLuint Engine::GLTextArea;
-ILuint Engine::ILSpeakerArea;
-GLuint Engine::GLSpeakerArea;
 
 std::map<string, double> Engine::variables;
 std::map<string, string> Engine::imagesFileNames;
 std::map<string, ILuint> Engine::imagesDEVil;
 std::map<string, GLuint> Engine::images;
-std::map<string, Engine::ImagesValues> Engine::visibleImages;
+std::map<string, Engine::Actor> Engine::visibleActors;
 string Engine::inGameBackground;
 
 string Engine::talkingPerson;
@@ -43,6 +41,9 @@ string Engine::answer1;
 string Engine::answer2;
 string Engine::command1;
 string Engine::command2;
+int Engine::answerHover;
+
+Engine::Actor Engine::actor;
 
 //Functions
 Engine::Engine(int argc, char **argv)
@@ -61,6 +62,7 @@ Engine::Engine(int argc, char **argv)
 	glutDisplayFunc(&DrawScene);
 	glutReshapeFunc(&Resize);
 	glutMouseFunc(&MouseControl);
+	glutPassiveMotionFunc(&MouseMotionControl);
 	glutKeyboardFunc(&KeyInput);
 	glutTimerFunc(5, &Animate, 1);
 	glutMainLoop();

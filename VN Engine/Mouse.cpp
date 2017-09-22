@@ -7,12 +7,14 @@ void Engine::MouseControl(int button, int button_state, int x, int y)
 	if (button == GLUT_LEFT_BUTTON && button_state == GLUT_DOWN)
 	{
 		string text;
+		float tempX = (x - (width - displayWidth) / 2.0) / displayWidth;
+		float tempY = (y - (height - displayHeight) / 2.0) / displayHeight;
 		switch (state)
 		{
 		case MAIN_MENU:
-			if (x >= 0.35f*width && x <= 0.65f*width)
+			if (tempX >= 0.35f && tempX <= 0.65f)
 			{
-				if (y >= 0.275f*height && y <= 0.325f*height)
+				if (tempY >= 0.275f && tempY <= 0.325f)
 				{
 					state = GAME;
 					linePosition = 0;
@@ -20,11 +22,11 @@ void Engine::MouseControl(int button, int button_state, int x, int y)
 					std::getline(gameFile, text);
 					ParseText(text);
 				}
-				else if (y >= 0.425f*height && y <= 0.475f*height)
+				else if (tempY >= 0.425f && tempY <= 0.475f)
 				{
 					state = LOAD_WINDOW;
 				}
-				else if (y >= 0.575f*height && y <= 0.625f*height)
+				else if (tempY >= 0.575f && tempY <= 0.625f)
 				{
 					exit(0);
 				}
@@ -36,27 +38,25 @@ void Engine::MouseControl(int button, int button_state, int x, int y)
 				ReadNextLine();
 			else
 			{
-				//Za³ó¿my, ¿e s¹ 2 guziki wyœwietlone (todo w draw)
-				if (x >= 0.35f*width && x <= 0.65f*width)
+				if (tempY >= 0.87f && tempY <= 0.91f)
 				{
-					if (y >= 0.275f*height && y <= 0.325f*height)
-					{
-						ParseText(command1);
-						command1.clear();
-						command2.clear();
-						answer1.clear();
-						answer2.clear();
-						question.clear();
-					}
-					else if (y >= 0.425f*height && y <= 0.475f*height)
-					{
-						ParseText(command2);
-						command1.clear();
-						command2.clear();
-						answer1.clear();
-						answer2.clear();
-						question.clear();
-					}
+					string command = command1;
+					command1.clear();
+					command2.clear();
+					answer1.clear();
+					answer2.clear();
+					question.clear();
+					ParseText(command);
+				}
+				else if (tempY >= 0.92f && tempY <= 0.96f)
+				{
+					string command = command2;
+					command1.clear();
+					command2.clear();
+					answer1.clear();
+					answer2.clear();
+					question.clear();
+					ParseText(command);
 				}
 			}
 			break;
@@ -75,5 +75,35 @@ void Engine::MouseControl(int button, int button_state, int x, int y)
 		state = MAIN_MENU;
 		gameFile.close();
 		InitStateVariables();
+	}
+}
+
+// Mouse motion callback
+void Engine::MouseMotionControl(int x, int y) 
+{
+	float tempX = (x - (width - displayWidth) / 2.0) / displayWidth;
+	float tempY = (y - (height - displayHeight) / 2.0) / displayHeight;
+	switch (state)
+	{
+	case MAIN_MENU:
+		break;
+	case GAME:
+		answerHover = 0;
+		if (tempX >= 0.0f && tempX <= 1.0f)
+		{
+			if (tempY >= 0.87f && tempY <= 0.91f)
+			{
+				answerHover = 1;
+			}
+			else if (tempY >= 0.92f && tempY <= 0.96f)
+			{
+				answerHover = 2;
+			}
+		}
+		break;
+	case SAVE_WINDOW:
+		break;
+	case LOAD_WINDOW:
+		break;
 	}
 }

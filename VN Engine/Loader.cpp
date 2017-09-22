@@ -28,15 +28,6 @@ void Engine::LoadGameImages()
 	//Load Quit Game Button Image
 	ILQuitGameImage = LoadImage("data/img/gui/QuitGameImage.png");
 	BindTexture(GLQuitGameImage);
-	//Load Answer Button Image
-	ILAnswerButtonImage = LoadImage("data/img/gui/AnswerButtonImage.png");
-	BindTexture(GLAnswerButtonImage);
-	//Load Text Area Image
-	ILTextArea = LoadImage("data/img/gui/TextAreaImage.png");
-	BindTexture(GLTextArea);
-	//Load Speaker Image
-	ILSpeakerArea = LoadImage("data/img/gui/SpeakerAreaImage.png");
-	BindTexture(GLSpeakerArea);
 
 	//Load Game Images
 	ILuint tempIL;
@@ -61,12 +52,6 @@ void Engine::DeleteGameImages()
 	glDeleteTextures(1, &GLLoadGameImage);
 	ilDeleteImages(1, &ILQuitGameImage);
 	glDeleteTextures(1, &GLQuitGameImage);
-	ilDeleteImages(1, &ILAnswerButtonImage);
-	glDeleteTextures(1, &GLAnswerButtonImage);
-	ilDeleteImages(1, &ILTextArea);
-	glDeleteTextures(1, &GLTextArea);
-	ilDeleteImages(1, &ILSpeakerArea);
-	glDeleteTextures(1, &GLSpeakerArea);
 
 	for (auto const &entry : imagesDEVil)
 		ilDeleteImages(1, &entry.second);

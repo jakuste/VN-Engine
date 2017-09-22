@@ -1,2 +1,9 @@
-[@]tlo3
-[#];zaraz koniec gry, tekst bez mówcy
+[^]TomaDef;[K];0
+[#]Toma-chan;Wiesz co?
+[^]TomaDef;[U]
+[^]TomaSmutna;[D];280;530;0.2
+[#]Toma-chan;Cwel z ciebie, seksow nie bedzie
+[^]TomaSmutna;[P];280;490
+[^]TomaSmutna;[S];0.15
+[#];Gratulacje! Udalo ci sie oprzec pokusom!
+[&]

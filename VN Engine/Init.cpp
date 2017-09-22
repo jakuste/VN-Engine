@@ -4,8 +4,8 @@
 
 void Engine::InitWindowVariables()
 {
-	width = 500;
-	height = 500;
+	width = displayWidth;
+	height = displayHeight;
 	windowXPosition = 100;
 	windowYPosition = 100;
 	windowTitle = "Game Engine";
@@ -16,6 +16,10 @@ void Engine::InitStateVariables()
 	state = MAIN_MENU;
 	linePosition = 0;
 	sceneFile = "data/scenes/scene01.txt";
+	question.clear();
+	visibleActors.clear();
+	victory = 0;
+	creditsY = 1.0f;
 }
 
 void Engine::InitGLUT(int argc, char **argv)

@@ -1,3 +1,8 @@
-[@]tlo2
-[#]mówca 2;inny tekst
-[>]scene02b.txt
+[#]Toma-chan;Wiesz co?
+[^]TomaDef;[U]
+[^]TomaRumieniec;[D];280;530;0.2
+[#]Toma-chan;Fajny jestes. Jesli chcesz, moge byc twoja waifu
+[^]TomaRumieniec;[P];280;550
+[^]TomaRumieniec;[S];0.25
+[#];Gratulacje! Ty i Toma-chan bedziecie miec wiele malych pomidorkow!
+[*]
