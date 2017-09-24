@@ -37,7 +37,7 @@ void Engine::DrawImage(float imageX, float imageY, float imageWidth, float image
 
 void Engine::DrawImageWindow(float imageX, float imageY, float imageWidth, float imageHeight)
 {
-	DrawImage(imageX*width, imageY*height, imageWidth*width, imageHeight*height);
+	DrawImage(imageX*displayWidth, imageY*displayHeight, imageWidth*displayWidth, imageHeight*displayHeight);
 }
 
 void Engine::DrawActor(float imageX, float imageY, float imageWidth, float imageHeight, float rot)
@@ -58,7 +58,11 @@ void Engine::DrawActors()
 	{
 		Actor actor = mapElement.second;
 		glBindTexture(GL_TEXTURE_2D, images[mapElement.first]);
-		DrawActor(actor.xPos, actor.yPos, actor.sizeX * actor.scale, actor.sizeY * actor.scale, actor.rot);
+		DrawActor(actor.xPos * displayWidth,
+			actor.yPos * displayHeight, 
+			actor.sizeX * actor.scale, 
+			actor.sizeY * actor.scale, 
+			actor.rot);
 	}
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
@@ -87,7 +91,7 @@ void Engine::DrawText(float posX, float posY, string text, bool endingFont) {
 
 void Engine::DrawTextWindow(float posX, float posY, string text, bool endingFont)
 {
-	DrawText(posX*width, posY*height, text, endingFont);
+	DrawText(posX*displayWidth, posY*displayHeight, text, endingFont);
 }
 
 void Engine::DisplayMainMenu()
@@ -113,18 +117,18 @@ void Engine::DrawTextArea()
 {
 	glBegin(GL_QUADS);
 	glColor4f(0.0f, 0.0f, 0.0f, 0.0f);
-	glVertex2f(0.0f*width, 0.78f*height);
-	glVertex2f(1.0f*width, 0.78f*height);
+	glVertex2f(0.00f * displayWidth, 0.78f * displayHeight);
+	glVertex2f(1.00f * displayWidth, 0.78f * displayHeight);
 	glColor4f(0.0f, 0.0f, 0.0f, 0.9f);
-	glVertex2f(1.0f*width, (0.82f)*height);
-	glVertex2f(0.0f*width, (0.82f)*height);
+	glVertex2f(1.00f * displayWidth, 0.82f * displayHeight);
+	glVertex2f(0.00f * displayWidth, 0.82f * displayHeight);
 	glEnd();
 
 	glBegin(GL_QUADS);
-	glVertex2f((0.0f)*width, (0.82f)*height);
-	glVertex2f((0.0f)*width, (1.0f)*height);
-	glVertex2f((1.0f)*width, (1.0f)*height);
-	glVertex2f((1.0f)*width, (0.82f)*height);
+	glVertex2f(0.00f * displayWidth, 0.82f * displayHeight);
+	glVertex2f(0.00f * displayWidth, 1.00f * displayHeight);
+	glVertex2f(1.00f * displayWidth, 1.00f * displayHeight);
+	glVertex2f(1.00f * displayWidth, 0.82f * displayHeight);
 	glEnd();
 
 	glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
@@ -136,14 +140,14 @@ void Engine::DrawSpeakerOrQuestionArea()
 
 	glBegin(GL_LINES);
 	glColor4f(1.0, 1.0, 1.0, 1.0);
-	glVertex2f((0.0f)*width, (0.85f)*height);
-	glVertex2f((0.5f)*width, (0.85f)*height);
+	glVertex2f(0.00f * displayWidth, 0.85f * displayHeight);
+	glVertex2f(0.50f * displayWidth, 0.85f * displayHeight);
 	glEnd();
 
 	glBegin(GL_LINES);
-	glVertex2f((0.5f)*width, (0.85f)*height);
+	glVertex2f(0.50f * displayWidth, 0.85f * displayHeight);
 	glColor4f(1.0, 1.0, 1.0, 0.0);
-	glVertex2f((0.95f)*width, (0.85f)*height);
+	glVertex2f(0.95f * displayWidth, 0.85f * displayHeight);
 	glEnd();
 
 	glColor4f(1.0, 1.0, 1.0, 1.0);
@@ -164,16 +168,16 @@ void Engine::DrawButton(int buttonNumber, float buttonX, float buttonY, float bu
 
 void Engine::DrawButtonWindow(int buttonNumber, float buttonX, float buttonY, float buttonWidth, float buttonHeight)
 {
-	DrawButton(buttonNumber, buttonX*width, buttonY*height, buttonWidth*width, buttonHeight*height);
+	DrawButton(buttonNumber, buttonX*displayWidth, buttonY*displayHeight, buttonWidth*displayWidth, buttonHeight*displayHeight);
 }
 
 void Engine::DrawEndingPanel()
 {
 	glBegin(GL_QUADS);
 	glColor4f(0.0f, 0.0f, 0.0f, 0.6f);
-	glVertex2f(0.0f, height);
-	glVertex2f(width, height);
-	glVertex2f(width, 0.0f);
+	glVertex2f(0.0f, displayHeight);
+	glVertex2f(displayWidth, displayHeight);
+	glVertex2f(displayWidth, 0.0f);
 	glVertex2f(0.0f, 0.0f);
 	glEnd();
 
@@ -278,7 +282,7 @@ void Engine::Resize(int w, int h)
 
 		// Specify the orthographic (or perpendicular) projection, 
 		// i.e., define the viewing box.
-		glOrtho(0.0, w, h, 0.0, 0.0, 10.0);
+		glOrtho(0.0, displayWidth, displayHeight, 0.0, 0.0, 10.0);
 		//glFrustum(-10.0, 10.0, -10.0, 10.0, 5.0, 100.0); 
 
 		// Set matrix mode to modelview.

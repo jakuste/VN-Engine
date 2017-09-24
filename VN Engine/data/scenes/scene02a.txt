@@ -1,8 +1,8 @@
 [#]Toma-chan;Wiesz co?
 [^]TomaDef;[U]
-[^]TomaRumieniec;[D];280;530;0.2
+[^]TomaRumieniec;[D];0.35;0.88333;0.2
 [#]Toma-chan;Fajny jestes. Jesli chcesz, moge byc twoja waifu
-[^]TomaRumieniec;[P];280;550
+[^]TomaRumieniec;[P];0.35;0.91666
 [^]TomaRumieniec;[S];0.25
 [#];Gratulacje! Ty i Toma-chan bedziecie miec wiele malych pomidorkow!
 [*]

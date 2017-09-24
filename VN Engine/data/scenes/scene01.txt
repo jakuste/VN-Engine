@@ -1,5 +1,5 @@
 [@]tlo1
-[^]TomaDef;[D];280;530;0.2
+[^]TomaDef;[D];0.35;0.88333;0.2
 [$]punkty=0
 [#]Toma-chan;Hej przystojniaku
 [?] ;Gitara siema;Uszanowanko
