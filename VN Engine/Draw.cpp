@@ -178,6 +178,8 @@ void Engine::DrawEndingPanel()
 	glEnd();
 
 	glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+
+	
 }
 
 void Engine::DrawClosingCredits()
@@ -186,6 +188,7 @@ void Engine::DrawClosingCredits()
 	if (creditsY >= 0.35)DrawTextWindow(0.4f, creditsY + 0.1f, "Jakub Steuer");
 	if (creditsY >= 0.3) DrawTextWindow(0.4f, creditsY + 0.15f, "Michal A. Wilk");
 	if (creditsY >= 0.25)DrawTextWindow(0.4f, creditsY + 0.2f, "Michal Kudela");
+	
 }
 
 void Engine::DisplayGame()
@@ -235,7 +238,8 @@ void Engine::DisplayGame()
 		else DrawTextWindow(0.42f, 0.4f, "Przegrales!", true);
 
 		//TODO: Animacja cz¹steczkowa na ekranie koñca gry, jakieœ wybuchy jak fajerwerki
-
+		StartParticles();
+		DrawParticles();
 		DrawClosingCredits();
 	}
 
