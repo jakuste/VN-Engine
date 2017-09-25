@@ -238,8 +238,7 @@ void Engine::DisplayGame()
 		if (victory == 1) DrawTextWindow(0.42f, 0.4f, "Wygrales!", true);
 		else DrawTextWindow(0.42f, 0.4f, "Przegrales!", true);
 
-		//TODO: Animacja cz¹steczkowa na ekranie koñca gry, jakieœ wybuchy jak fajerwerki
-
+		DrawParticles();
 		DrawClosingCredits();
 	}
 
@@ -308,9 +307,35 @@ void Engine::Animate(int value) {
 		}
 	}
 
-	if (victory != 0) creditsY -= 0.001f;
+	if (victory != 0)
+	{
+		creditsY -= 0.001f;
 
-	//TODO: Animacja cz¹steczkowa na ekranie koñca gry, jakieœ wybuchy jak fajerwerki
+		static int timerNew = 0;
+		timerNew++;
+		if (timerNew == 50)
+		{
+			timerNew = 0;
+			explosions.push_back(std::pair<float, float>((rand() % 800) / 1000.0 + 0.1, (rand() % 400) / 1000.0 + 0.1));
+		}
+		if (explosions.size() > 10)
+		{
+			explosions.pop_front();
+		}
+
+
+		std::list<std::pair<float, float>>::iterator explosionsIterator = explosions.begin();
+		while (explosionsIterator != explosions.end())
+		{
+			AddParticleExplosion(explosionsIterator->first, explosionsIterator->second);
+			explosionsIterator++;
+		}
+		AddParticleFountain(-1);
+		AddParticleFountain(0);
+		AddParticleFountain(1);
+
+		AnimateParticles();
+	}
 
 	glutTimerFunc(10, &Animate, 1);
 	glutPostRedisplay();

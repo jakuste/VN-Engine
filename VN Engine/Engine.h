@@ -53,6 +53,13 @@ private:
 
 	static ILuint LoadImage(const char *filename);
 
+	static float NRand();
+
+	static void AnimateParticles();
+	static void AddParticleExplosion(float xPos, float yPos);
+	static void AddParticleFountain(int position);
+	static void DrawParticles();
+
 	struct Actor {
 		float xPos = 0.0;		// pozycja x (srodek);
 		float yPos = 0.0;		// pozycja y (dol);
@@ -65,7 +72,17 @@ private:
 		float rotAngle = 0.0f;	// maksymalny obrot (stopnie)
 		int rotDir = 0;			// 1 = clockwise, -1 = counter clockwise
 	};
-public:
+
+	struct Particle {
+		GLfloat lifetime;					// czas zycia
+		GLfloat maximum_lifetime;           // czas smierci
+		GLfloat r, g, b;					// skladowe koloru 
+		GLfloat xPos, yPos;					// pozycja czastki (x,y)
+		GLfloat xspeed, yspeed;				// predkosc czastki
+		GLfloat xAcc, yAcc;					// przyspieszenie czastki
+		float angle;
+	};
+
 	//GLUT Variables
 	int static width;
 	int static height;
@@ -109,5 +126,8 @@ public:
 	static string command2;
 	static int answerHover;
 
-	static Actor actor;
+	static std::list<Particle> particlesFountains;
+	static std::list<Particle> particlesExplosions;
+	static std::list<Particle>::iterator particleIterator;
+	static std::list<std::pair<float, float>> explosions;
 };

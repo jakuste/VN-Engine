@@ -43,7 +43,10 @@ string Engine::command1;
 string Engine::command2;
 int Engine::answerHover;
 
-Engine::Actor Engine::actor;
+std::list<Engine::Particle> Engine::particlesFountains;
+std::list<Engine::Particle> Engine::particlesExplosions;
+std::list<Engine::Particle>::iterator Engine::particleIterator;
+std::list<std::pair<float, float>> Engine::explosions;
 
 //Functions
 Engine::Engine(int argc, char **argv)

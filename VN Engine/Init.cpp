@@ -20,6 +20,9 @@ void Engine::InitStateVariables()
 	visibleActors.clear();
 	victory = 0;
 	creditsY = 1.0f;
+	particlesExplosions.clear();
+	particlesFountains.clear();
+	explosions.clear();
 }
 
 void Engine::InitGLUT(int argc, char **argv)
