@@ -15,6 +15,7 @@ void Engine::InitStateVariables()
 {
 	state = MAIN_MENU;
 	linePosition = 0;
+	textPosition = 0;
 	sceneFile = "data/scenes/scene01.txt";
 	question.clear();
 	visibleActors.clear();

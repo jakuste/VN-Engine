@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "Engine.h"
-#include <ctime>
 
 //Static variables
 int Engine::width;
@@ -13,6 +12,7 @@ const int Engine::displayHeight = 600;
 
 STATE Engine::state;
 int Engine::linePosition;
+int Engine::textPosition;
 fstream Engine::gameFile;
 string Engine::sceneFile;
 int Engine::victory;

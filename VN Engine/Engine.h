@@ -60,6 +60,9 @@ private:
 	static void AddParticleFountain(int position);
 	static void DrawParticles();
 
+	static void SaveGame(int slot);
+	static void LoadGame(int slot);
+
 	struct Actor {
 		float xPos = 0.0;		// pozycja x (srodek);
 		float yPos = 0.0;		// pozycja y (dol);
@@ -95,6 +98,7 @@ private:
 	//Engine Variables
 	static STATE state;
 	static int linePosition;
+	static int textPosition;
 	static fstream gameFile;
 	static string sceneFile;
 	static int victory;

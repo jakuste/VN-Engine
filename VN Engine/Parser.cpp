@@ -64,6 +64,7 @@ void Engine::ParseText(string text)
 	}
 	else if (tag.compare("[?]") == 0)
 	{
+		textPosition = linePosition;
 		ParseQuestion(text);
 	}
 	else if (tag.compare("[+]") == 0)
@@ -85,6 +86,7 @@ void Engine::ParseText(string text)
 	}
 	else if (tag.compare("[#]") == 0)
 	{
+		textPosition = linePosition;
 		ParseSpeak(text);
 	}
 	else if (tag.compare("[^]") == 0)
@@ -153,7 +155,7 @@ void Engine::ParseScene(string text)
 	gameFile.close();
 	sceneFile = "data/scenes/" + text;
 	gameFile.open(sceneFile, std::ios::in);
-	linePosition = 0;
+	linePosition = -1;
 }
 
 void Engine::ParseQuestion(string text)

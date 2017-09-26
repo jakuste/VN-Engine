@@ -18,6 +18,7 @@ void Engine::MouseControl(int button, int button_state, int x, int y)
 				{
 					state = GAME;
 					linePosition = 0;
+					textPosition = 0;
 					gameFile.open(sceneFile, std::ios::in);
 					std::getline(gameFile, text);
 					ParseText(text);
