@@ -83,3 +83,9 @@ void Engine::LoadGame(int slot)
 	}
 	ParseText(temp);
 }
+
+bool Engine::ExistSave(string slot)
+{
+	std::ifstream f("saves/" + slot + ".txt");
+	return f.good();
+}

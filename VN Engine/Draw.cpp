@@ -15,10 +15,10 @@ void Engine::DrawScene()
 		DisplayGame();
 		break;
 	case SAVE_WINDOW:
-		DispaySaveWindow();
+		DisplaySaveLoadWindow();
 		break;
 	case LOAD_WINDOW:
-		DisplayLoadWindow();
+		DisplaySaveLoadWindow();
 		break;
 	}
 	glPopMatrix();
@@ -234,6 +234,7 @@ void Engine::DisplayGame()
 
 	if (victory != 0)
 	{
+		openSettings = false;
 		DrawEndingPanel();
 		if (victory == 1) DrawTextWindow(0.42f, 0.4f, "Wygrales!", true);
 		else DrawTextWindow(0.42f, 0.4f, "Przegrales!", true);
@@ -241,23 +242,51 @@ void Engine::DisplayGame()
 		DrawParticles();
 		DrawClosingCredits();
 	}
+	else
+	{
+		//Button (Wejœcie do opcji)
+		glBindTexture(GL_TEXTURE_2D, GLSettingsImage);
+		DrawImageWindow(0.95f, 0.0f, 0.05f, 0.05f);
+
+		if (openSettings)
+		{
+			//Button 1 (Menu)
+			glBindTexture(GL_TEXTURE_2D, GLMenuImage);
+			DrawImageWindow(0.7f, 0.05f, 0.3f, 0.05f);
+
+			//Button 2 (Zapisz grê)
+			glBindTexture(GL_TEXTURE_2D, GLSaveGameImage);
+			DrawImageWindow(0.7f, 0.1f, 0.3f, 0.05f);
+		}
+	}
 
 	glDisable(GL_BLEND);
 }
 
-void Engine::DispaySaveWindow()
+void Engine::DisplaySaveLoadWindow()
 {
-	//TODO: wyœwietlanie okna zapisu
+	//T³o
+	glBindTexture(GL_TEXTURE_2D, GLMenuBackgroundImage);
+	DrawImageWindow(0.0f, 0.0f, 1.0f, 1.0f);
 
+	//Button 1 (Wczytaj zapis 1)
+	if (ExistSave("1")) glBindTexture(GL_TEXTURE_2D, GLSavesImage[1]);
+	else glBindTexture(GL_TEXTURE_2D, GLSavesImage[0]);
+	DrawImageWindow(0.35f, 0.275f, 0.3f, 0.05f);
 
+	//Button 2 (Wczytaj zapis 2)
+	if (ExistSave("2")) glBindTexture(GL_TEXTURE_2D, GLSavesImage[2]);
+	else glBindTexture(GL_TEXTURE_2D, GLSavesImage[0]);
+	DrawImageWindow(0.35f, 0.425f, 0.3f, 0.05f);
 
-}
+	//Button 3 (Wczytaj zapis 3)
+	if (ExistSave("3")) glBindTexture(GL_TEXTURE_2D, GLSavesImage[3]);
+	else glBindTexture(GL_TEXTURE_2D, GLSavesImage[0]);
+	DrawImageWindow(0.35f, 0.575f, 0.3f, 0.05f);
 
-void Engine::DisplayLoadWindow()
-{
-	//TODO: wyœwietlanie okna wczytywania
-
-
+	//Button 4 (Wróæ do menu)
+	glBindTexture(GL_TEXTURE_2D, GLReturnImage);
+	DrawImageWindow(0.35f, 0.725f, 0.3f, 0.05f);
 }
 
 void Engine::Resize(int w, int h)
@@ -270,24 +299,11 @@ void Engine::Resize(int w, int h)
 	{
 		width = w;
 		height = h;
-		// Set viewport size to be entire OpenGL window.
 		glViewport((width - displayWidth) / 2.0, (height - displayHeight) / 2.0, displayWidth, displayHeight);
-
-		// Set matrix mode to projection.
 		glMatrixMode(GL_PROJECTION);
-
-		// Clear current projection matrix to identity.
 		glLoadIdentity();
-
-		// Specify the orthographic (or perpendicular) projection, 
-		// i.e., define the viewing box.
 		glOrtho(0.0, displayWidth, displayHeight, 0.0, 0.0, 10.0);
-		//glFrustum(-10.0, 10.0, -10.0, 10.0, 5.0, 100.0); 
-
-		// Set matrix mode to modelview.
 		glMatrixMode(GL_MODELVIEW);
-
-		// Clear current modelview matrix to identity.
 		glLoadIdentity();
 	}
 }

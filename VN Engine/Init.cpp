@@ -21,6 +21,7 @@ void Engine::InitStateVariables()
 	visibleActors.clear();
 	victory = 0;
 	creditsY = 1.0f;
+	openSettings = false;
 	particlesExplosions.clear();
 	particlesFountains.clear();
 	explosions.clear();
@@ -28,44 +29,32 @@ void Engine::InitStateVariables()
 
 void Engine::InitGLUT(int argc, char **argv)
 {
-	// Initialize GLUT.
 	glutInit(&argc, argv);
-
-	// Set display mode as single-buffered and RGB color.
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
-
-	// Set OpenGL window size.
 	glutInitWindowSize(width, height);
-
-	// Set position of OpenGL window upper-left corner.
 	glutInitWindowPosition(windowXPosition, windowYPosition);
-
-	// Create OpenGL window with title.
 	glutCreateWindow(windowTitle.c_str());
-
-	// Initialize GLEW.
 	glewInit();
 }
 
 void Engine::InitGL()
 {
-	glViewport(0, 0, width, height); // use a screen size of WIDTH x HEIGHT
-	glEnable(GL_TEXTURE_2D);     // Enable 2D texturing
+	glViewport(0, 0, width, height);
+	glEnable(GL_TEXTURE_2D);
 
-	glMatrixMode(GL_PROJECTION);     // Make a simple 2D projection on the entire window
+	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	glOrtho(0.0, width, height, 0.0, 0.0, 10.0);
 
-	glMatrixMode(GL_MODELVIEW);    // Set the matrix mode to object modeling
+	glMatrixMode(GL_MODELVIEW);
 
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	glClearDepth(0.0f);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear the window
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
 bool Engine::InitDEVil()
 {
-	/* Initialization of DevIL */
 	if (ilGetInteger(IL_VERSION_NUM) < IL_VERSION)
 	{
 		printf("Wrong DevIL version!\n");

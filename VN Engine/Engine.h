@@ -32,8 +32,7 @@ private:
 	static void DrawTextWindow(float posX, float posY, string text, bool endingFont = false);
 	static void DisplayMainMenu();
 	static void DisplayGame();
-	static void DispaySaveWindow();
-	static void DisplayLoadWindow();
+	static void DisplaySaveLoadWindow();
 	static void DrawTextArea();
 	static void DrawSpeakerOrQuestionArea();
 	static void DrawButton(int buttonNumber, float buttonX, float buttonY, float buttonWidth, float buttonHeight);
@@ -62,6 +61,7 @@ private:
 
 	static void SaveGame(int slot);
 	static void LoadGame(int slot);
+	static bool ExistSave(string slot);
 
 	struct Actor {
 		float xPos = 0.0;		// pozycja x (srodek);
@@ -83,7 +83,7 @@ private:
 		GLfloat xPos, yPos;					// pozycja czastki (x,y)
 		GLfloat xspeed, yspeed;				// predkosc czastki
 		GLfloat xAcc, yAcc;					// przyspieszenie czastki
-		float angle;
+		float angle;						// k¹t wystrza³u
 	};
 
 	//GLUT Variables
@@ -103,6 +103,7 @@ private:
 	static string sceneFile;
 	static int victory;
 	static float creditsY;
+	bool static openSettings;
 
 	static ILuint ILMenuBackgroundImage;
 	static GLuint GLMenuBackgroundImage;
@@ -112,7 +113,16 @@ private:
 	static GLuint GLLoadGameImage;
 	static ILuint ILQuitGameImage;
 	static GLuint GLQuitGameImage;
-
+	static ILuint ILSavesImage[4];
+	static GLuint GLSavesImage[4];
+	static ILuint ILReturnImage;
+	static GLuint GLReturnImage;
+	static ILuint ILMenuImage;
+	static GLuint GLMenuImage;
+	static ILuint ILSaveGameImage;
+	static GLuint GLSaveGameImage;
+	static ILuint ILSettingsImage;
+	static GLuint GLSettingsImage;
 
 	static std::map<string, double> variables;
 	static std::map<string, string> imagesFileNames;

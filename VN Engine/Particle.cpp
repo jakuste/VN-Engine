@@ -1,18 +1,14 @@
 #include "stdafx.h"
 #include "Engine.h"
 
-//static float NRA
-
 float Engine::NRand()
 {
 	static int q = 15;
 	static float c1 = (1 << q) - 1;
 	static float c2 = ((int)(c1 / 3)) + 1;
 	static float c3 = 1.f / c1;
-	/* random number in range 0 - 1 not including 1 */
 	float random = 0.f;
 
-	/* the white noise */
 	float noise = 0.f;
 	random = ((float)(rand()) / (float)(RAND_MAX + 1));
 	random = (2.f * ((random * c2) + (random * c2) + (random * c2)) - 3.f * (c2 - 1.f)) * c3;
@@ -21,7 +17,7 @@ float Engine::NRand()
 
 void Engine::AddParticleExplosion(float xPos, float yPos)
 {
-	//Add new particle
+	//Dodaj now¹ cz¹steczkê
 	Particle par;
 	par.r = abs(NRand());
 	par.g = abs(NRand()) * 0.1 + 0.1;
@@ -38,7 +34,7 @@ void Engine::AddParticleExplosion(float xPos, float yPos)
 
 void Engine::AddParticleFountain(int position)
 {
-	//Add new particle
+	//Dodaj now¹ cz¹steczkê
 	Particle par;
 	par.b = 0.5f + abs(NRand()) * 0.5;
 	par.g = 0.2f + abs(NRand()) * 0.4;
@@ -61,7 +57,7 @@ void Engine::AnimateParticles()
 	clock_t newtime = clock();
 	double timePassed = (double)(newtime - oldtime) / (double)CLOCKS_PER_SEC;
 
-	//Explosions
+	//Eksplozje
 	particleIterator = particlesExplosions.begin();
 	while (particleIterator != particlesExplosions.end())
 	{
@@ -90,18 +86,19 @@ void Engine::AnimateParticles()
 			particleIterator++;
 		}
 	}
-	//Fountains
+
+	//Fontanny
 	particleIterator = particlesFountains.begin();
 	while (particleIterator != particlesFountains.end())
 	{
-		//Zmiana parametrow particla
+		//Zmiana parametrów cz¹steczki
 		particleIterator->xPos += particleIterator->xspeed;
 		particleIterator->yPos += particleIterator->yspeed;
 
 		particleIterator->xspeed += particleIterator->xAcc;
 		particleIterator->yspeed += particleIterator->yAcc;
 
-		//Usuwanie particli
+		//Usuwanie cz¹steczki
 		particleIterator->lifetime += timePassed;
 		if (particleIterator->lifetime >= particleIterator->maximum_lifetime)
 		{
@@ -124,7 +121,7 @@ void Engine::DrawParticles()
 	glBlendFunc(GL_ONE, GL_ONE);
 	glDisable(GL_DEPTH_TEST);
 
-	//Explosions
+	//Eksplozje
 	std::list<Particle>::iterator parIter = particlesExplosions.begin();
 	glPointSize(3.0f);
 	for (uint32_t i = 0; i < particlesExplosions.size(); i++, parIter++)
@@ -134,7 +131,8 @@ void Engine::DrawParticles()
 		glVertex2f(parIter->xPos * displayWidth, parIter->yPos * displayHeight);
 		glEnd();
 	}
-	//Fountains
+
+	//Fontanny
 	parIter = particlesFountains.begin();
 	glPointSize(3.0f);
 	for (uint32_t i = 0; i < particlesFountains.size(); i++, parIter++)

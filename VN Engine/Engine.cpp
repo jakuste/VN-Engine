@@ -17,6 +17,7 @@ fstream Engine::gameFile;
 string Engine::sceneFile;
 int Engine::victory;
 float Engine::creditsY;
+bool Engine::openSettings;
 
 ILuint Engine::ILMenuBackgroundImage;
 GLuint Engine::GLMenuBackgroundImage;
@@ -26,6 +27,16 @@ ILuint Engine::ILLoadGameImage;
 GLuint Engine::GLLoadGameImage;
 ILuint Engine::ILQuitGameImage;
 GLuint Engine::GLQuitGameImage;
+ILuint Engine::ILSavesImage[4];
+GLuint Engine::GLSavesImage[4];
+ILuint Engine::ILReturnImage;
+GLuint Engine::GLReturnImage;
+ILuint Engine::ILMenuImage;
+GLuint Engine::GLMenuImage;
+ILuint Engine::ILSaveGameImage;
+GLuint Engine::GLSaveGameImage;
+ILuint Engine::ILSettingsImage;
+GLuint Engine::GLSettingsImage;
 
 std::map<string, double> Engine::variables;
 std::map<string, string> Engine::imagesFileNames;
@@ -48,7 +59,6 @@ std::list<Engine::Particle> Engine::particlesExplosions;
 std::list<Engine::Particle>::iterator Engine::particleIterator;
 std::list<std::pair<float, float>> Engine::explosions;
 
-//Functions
 Engine::Engine(int argc, char **argv)
 {
 	srand(time(0));

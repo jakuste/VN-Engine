@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "Engine.h"
 
-// Mouse callback routine.
 void Engine::MouseControl(int button, int button_state, int x, int y)
 {
 	if (button == GLUT_LEFT_BUTTON && button_state == GLUT_DOWN)
@@ -34,52 +33,118 @@ void Engine::MouseControl(int button, int button_state, int x, int y)
 			}
 			break;
 		case GAME:
-			//TODO: Dodaæ obs³ugê wejœcia do okna zapisu
-			if (question.empty())
-				ReadNextLine();
-			else
+			if (victory == 0)
 			{
-				if (tempY >= 0.87f && tempY <= 0.91f)
+				if (tempX >= 0.95f && tempX <= 1.0f)
 				{
-					string command = command1;
-					command1.clear();
-					command2.clear();
-					answer1.clear();
-					answer2.clear();
-					question.clear();
-					ParseText(command);
+					if (tempY >= 0.0f && tempY <= 0.05f)
+					{
+						openSettings = !openSettings;
+					}
 				}
-				else if (tempY >= 0.92f && tempY <= 0.96f)
+				if (openSettings)
 				{
-					string command = command2;
-					command1.clear();
-					command2.clear();
-					answer1.clear();
-					answer2.clear();
-					question.clear();
-					ParseText(command);
+					if (tempX >= 0.7f && tempX <= 1.0f)
+					{
+						if (tempY >= 0.05f && tempY <= 0.10f)
+						{
+							state = MAIN_MENU;
+							gameFile.close();
+							InitStateVariables();
+						}
+						else if (tempY >= 0.10f && tempY <= 0.15f)
+						{
+							state = SAVE_WINDOW;
+						}
+					}
+				}
+			}
+
+			if (state == GAME)
+			{
+				if (question.empty())
+				{
+					if (victory != 0) ReadNextLine();
+					else
+					{
+						if (!(tempX >= 0.95f && tempX <= 1.0f && tempY >= 0.0f && tempY <= 0.05f))
+						{
+							if (!openSettings) ReadNextLine();
+							else if (!(tempX >= 0.7f && tempX <= 1.0f && tempY >= 0.05f && tempY <= 0.15f)) ReadNextLine();
+						}
+					}
+				}
+				else
+				{
+					if (tempY >= 0.87f && tempY <= 0.91f)
+					{
+						string command = command1;
+						command1.clear();
+						command2.clear();
+						answer1.clear();
+						answer2.clear();
+						question.clear();
+						ParseText(command);
+					}
+					else if (tempY >= 0.92f && tempY <= 0.96f)
+					{
+						string command = command2;
+						command1.clear();
+						command2.clear();
+						answer1.clear();
+						answer2.clear();
+						question.clear();
+						ParseText(command);
+					}
 				}
 			}
 			break;
 		case SAVE_WINDOW:
-			//TODO: Dodaæ zapis stanu gry i powrót do poprzedniego stanu (do GAME), stan gry musi zawieraæ wartoœci zmiennych, wyœwietlane postacie i efekty, obecn¹ pozycjê w tekœcie, wybran¹ scenê
+			if (tempX >= 0.35f && tempX <= 0.65f)
+			{
+				if (tempY >= 0.275f && tempY <= 0.325f)
+				{
+					SaveGame(1);
+				}
+				else if (tempY >= 0.425f && tempY <= 0.475f)
+				{
+					SaveGame(2);
+				}
+				else if (tempY >= 0.575f && tempY <= 0.625f)
+				{
+					SaveGame(3);
+				}
+				else if (tempY >= 0.725f && tempY <= 0.775f)
+				{
+					state = GAME;
+				}
+			}
 			break;
 		case LOAD_WINDOW:
-			//TODO: Dodaæ wczytywanie stanu gry
+			if (tempX >= 0.35f && tempX <= 0.65f)
+			{
+				if (tempY >= 0.275f && tempY <= 0.325f)
+				{
+					if (ExistSave("1")) LoadGame(1);
+				}
+				else if (tempY >= 0.425f && tempY <= 0.475f)
+				{
+					if (ExistSave("2")) LoadGame(2);
+				}
+				else if (tempY >= 0.575f && tempY <= 0.625f)
+				{
+					if (ExistSave("3")) LoadGame(3);
+				}
+				else if (tempY >= 0.725f && tempY <= 0.775f)
+				{
+					state = MAIN_MENU;
+				}
+			}
 			break;
 		}
 	}
-
-
-	//TODO: tymczasowe do cofania do menu
-	if (button == GLUT_RIGHT_BUTTON && button_state == GLUT_DOWN) {
-		state = MAIN_MENU;
-		gameFile.close();
-		InitStateVariables();
-	}
 }
 
-// Mouse motion callback
 void Engine::MouseMotionControl(int x, int y) 
 {
 	float tempX = (x - (width - displayWidth) / 2.0) / displayWidth;
