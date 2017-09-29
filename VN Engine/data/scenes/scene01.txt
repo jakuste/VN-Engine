@@ -1,17 +1,17 @@
 [@]tlo1
-[^]TomaDef;[D];0.35;0.88333;0.2
+[^]AniaDef;[D];0.35;0.88333;0.2
 [$]punkty=0
-[#]Toma-chan;Hej przystojniaku
+[#]Ania;Czesc.
 [?] ;Gitara siema;Uszanowanko
 [+][$]punkty-5
 [-][$]punkty+5
-[^]TomaDef;[O];1;0.03;7.0
-[#]Toma-chan;Czesto tu przychodzisz?
+[^]AniaDef;[O];1;0.03;7.0
+[#]Ania;Czesto tu przychodzisz?
 [?]Czesto tu przychodzisz?;Tak;Nie
 [+][$]punkty+1
 [-][$]punkty+0
-[#]Toma-chan;Wiesz, chcialabym ci zadac teraz kilka pytan
-[?]Jaki jest twoj ulubiony kolor;Czarny;Czerwony
+[#]Ania;Wiesz, chcialabym ci zadac teraz kilka pytan.
+[?]Jaki jest twoj ulubiony kolor?;Czarny;Czerwony
 [+][$]punkty+0
 [-][$]punkty+1
 [?]Wolisz warzywa czy owoce?;Warzywa;Owoce

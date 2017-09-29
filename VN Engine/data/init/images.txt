@@ -1,4 +1,4 @@
 tlo1 tlo1.png
-TomaDef postac1.png
-TomaSmutna postac2.png
-TomaRumieniec postac3.png
+AniaDef postac1.png
+AniaSmutna postac2.png
+AniaRumieniec postac3.png

@@ -1,9 +1,9 @@
-[^]TomaDef;[K];0
-[#]Toma-chan;Wiesz co?
-[^]TomaDef;[U]
-[^]TomaSmutna;[D];0.35;0.88333;0.2
-[#]Toma-chan;Cwel z ciebie, seksow nie bedzie
-[^]TomaSmutna;[P];0.35;0.81666
-[^]TomaSmutna;[S];0.15
-[#];Gratulacje! Udalo ci sie oprzec pokusom!
+[^]AniaDef;[K];0
+[#]Ania;Wiesz co?
+[^]AniaDef;[U]
+[^]AniaSmutna;[D];0.35;0.88333;0.2
+[#]Ania;Jestem zajeta, musze juz isc.
+[^]AniaSmutna;[P];0.35;0.81666
+[^]AniaSmutna;[S];0.15
+[#];Niestety! Nie oczarowales Ani.
 [&]
